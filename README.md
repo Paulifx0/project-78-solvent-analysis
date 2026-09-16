@@ -35,7 +35,7 @@ Can a cheap LED-and-photodiode sensor screen organic solvent contamination in te
 ## Results
 
 ### Calibration (ethanol, 940 nm)
-![Ethanol calibration](results/figures/ethanol_940_calibration.png)
+![Ethanol calibration](results/figures/enhanced_940_calibrations.png)
 
 ### PLS model comparison (spiked waste)
 
