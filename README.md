@@ -4,7 +4,7 @@ Data analysis for Project 78: ethanol, methanol and acetone calibration, visuali
 
 Can a cheap LED-and-photodiode sensor screen organic solvent contamination in teaching-laboratory aqueous waste? This repository contains the data analysis for my MSc Analytical Chemistry research project (Kingston University London, 2026). It covers calibration, precision, PCA and cross-validated PLS modelling, plus benchmarking against GC.
 
-![Sensor prototype](results/figures/prototype.png)
+![Sensor prototype](figures/prototype.png)
 
 ## Key findings
 
@@ -35,7 +35,7 @@ Can a cheap LED-and-photodiode sensor screen organic solvent contamination in te
 ## Results
 
 ### Calibration (ethanol, 940 nm)
-![Ethanol calibration](results/figures/enhanced_940_calibrations.png)
+![Ethanol calibration](figures/enhanced_940_calibrations.png)
 
 ### PLS model comparison (spiked waste)
 
@@ -44,7 +44,7 @@ Can a cheap LED-and-photodiode sensor screen organic solvent contamination in te
 | All wavelengths (465, 625, 850, 940 nm) | 2 | 2.04 | 0.90 |
 | Reduced (625 + 940 nm) | 1 | 1.63 | 0.93 |
 
-![PLS predicted vs actual](results/figures/[pls_predicted_vs_actual].png)
+![PLS predicted vs actual](figures/[pls_predicted_vs_actual].png)
 
 ## Limitations
 
