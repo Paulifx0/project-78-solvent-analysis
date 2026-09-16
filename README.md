@@ -4,7 +4,7 @@ Data analysis for Project 78: ethanol, methanol and acetone calibration, visuali
 
 Can a cheap LED-and-photodiode sensor screen organic solvent contamination in teaching-laboratory aqueous waste? This repository contains the data analysis for my MSc Analytical Chemistry research project (Kingston University London, 2026). It covers calibration, precision, PCA and cross-validated PLS modelling, plus benchmarking against GC.
 
-![Sensor prototype](results/figures/[key_figure].png)
+![Sensor prototype](results/figures/prototype.png)
 
 ## Key findings
 
