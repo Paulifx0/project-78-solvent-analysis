@@ -1,5 +1,3 @@
-# project-78-solvent-analysis
-Data analysis for Project 78: ethanol, methanol and acetone calibration, visualisation, PCA and PLS modelling for a multispectral solvent sensor.
 # Low-Cost Multispectral Sensing for Solvent-Waste Monitoring
 
 Can a cheap LED-and-photodiode sensor screen organic solvent contamination in teaching-laboratory aqueous waste? This repository contains the data analysis for my MSc Analytical Chemistry research project (Kingston University London, 2026). It covers calibration, precision, PCA and cross-validated PLS modelling, plus benchmarking against GC.
@@ -20,7 +18,7 @@ Can a cheap LED-and-photodiode sensor screen organic solvent contamination in te
 | Microcontroller | Raspberry Pi Pico WH |
 | Detector | TSL2591 light sensor |
 | Light sources | LEDs at 465, 625, 850 and 940 nm |
-| Sample | [cuvette / vial / flow cell, path length] |
+| Sample | Sample holder | Light-tight 3D-printed housing with a square cuvette slot and interchangeable LED cartridges (one per wavelength) |
 | Output | Detector counts per wavelength, saved as CSV |
 
 ## Analysis workflow
@@ -39,7 +37,7 @@ All analysis is in [`Project_78_Final_Data_Analysis.ipynb`](Project_78_Final_Dat
 ## Results
 
 ### Calibration at 940 nm (ethanol, methanol, acetone)
-![Ethanol calibration](figures/enhanced_940_calibrations.png)
+![940 nm calibration for ethanol, methanol and acetone](figures/enhanced_940_calibrations.png)
 
 ### PLS model comparison (spiked waste)
 
