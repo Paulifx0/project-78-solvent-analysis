@@ -4,7 +4,7 @@ Data analysis for Project 78: ethanol, methanol and acetone calibration, visuali
 
 Can a cheap LED-and-photodiode sensor screen organic solvent contamination in teaching-laboratory aqueous waste? This repository contains the data analysis for my MSc Analytical Chemistry research project (Kingston University London, 2026). It covers calibration, precision, PCA and cross-validated PLS modelling, plus benchmarking against GC.
 
-![Sensor prototype](figures/prototype.jpg)
+![Sensor prototype](figures/prototype(1).jpg)
 
 ## Key findings
 
@@ -25,16 +25,20 @@ Can a cheap LED-and-photodiode sensor screen organic solvent contamination in te
 
 ## Analysis workflow
 
-| Notebook | What it does |
+All analysis is in [`Project_78_Final_Data_Analysis.ipynb`](Project_78_Final_Data_Analysis.ipynb), which works through four stages:
+
+| Stage | What it does |
 |---|---|
-| `01_precision_and_calibration` | Replicate precision (mean, SD, RSD); linear vs quadratic calibration per wavelength; leave-one-level-out cross-validation (RMSECV, Q²) |
-| `02_pca_pure_solvents` | PCA of ethanol, methanol and acetone standards to see whether the solvents are distinguishable |
-| `03_spike_pls_and_vip` | Solvent spikes into a real waste matrix; cross-validated PLS; VIP-based wavelength selection; reduced-wavelength model |
-| `04_real_waste_vs_gc` | Optical response of real waste samples compared with GC reference values; exploratory PCA; PLS across samples |
+| 1. Precision and calibration | Replicate precision (mean, SD, RSD); linear vs quadratic calibration per wavelength; leave-one-level-out cross-validation (RMSECV, Q²) |
+| 2. PCA of pure solvents | PCA of ethanol, methanol and acetone standards to see which wavelengths drive the variation |
+| 3. Spike PLS and VIP | Solvent spikes into a real waste matrix; cross-validated PLS; VIP-based wavelength selection; reduced-wavelength model |
+| 4. Real waste vs GC | Optical response of real waste samples compared with GC reference values; exploratory PCA; PLS across samples |
+
+![PCA loadings](figures/pure_solvent_pca_loadings_final.png)
 
 ## Results
 
-### Calibration (ethanol, 940 nm)
+### Calibration at 940 nm (ethanol, methanol, acetone)
 ![Ethanol calibration](figures/enhanced_940_calibrations.png)
 
 ### PLS model comparison (spiked waste)
@@ -44,13 +48,27 @@ Can a cheap LED-and-photodiode sensor screen organic solvent contamination in te
 | All wavelengths (465, 625, 850, 940 nm) | 2 | 2.04 | 0.90 |
 | Reduced (625 + 940 nm) | 1 | 1.63 | 0.93 |
 
-![PLS predicted vs actual](figures/spike_pls_cross_validated_predictions.png)
+![PLS predicted vs actual, all wavelengths](figures/spike_pls_cross_validated_predictions.png)
+
+VIP scores showed that 940 nm and 625 nm carried most of the predictive information:
+
+![VIP scores](figures/spike_pls_vip_scores.png)
+
+Rebuilding the model on just those two wavelengths improved prediction:
+
+![PLS predicted vs actual, 625 + 940 nm](figures/reduced_625_940_spike_pls_predictions.png)
+
+### Real waste samples vs GC
+
+Across different real waste samples, cross-validated PLS predictions did not track GC concentrations (Q² = −1.78), because matrix variation between samples outweighed the solvent signal.
+
+![Real-waste PLS predictions](figures/real_waste_pls_loocv_predictions.png)
 
 ## Limitations
 
 - **Matrix effects:** Calibration was not transferable across waste samples with different matrices (see Key findings).
 - **Replication:** Ethanol precision reflects fill-to-fill repeatability, not independent reproducibility of standard preparation. For methanol and acetone only the per-run mean was saved, so within-run precision could not be reconstructed.
-- **Sample size:** Only [10] real waste samples were available, too few to model realistic matrix variability.
+- **Sample size:** Only 10 real waste samples were available (8 used in the cross-sample PLS after excluding outliers X1 and X4), too few to model realistic matrix variability.
 
 ## Future work
 
@@ -61,14 +79,11 @@ Can a cheap LED-and-photodiode sensor screen organic solvent contamination in te
 
 ## Reproducing the analysis
 
-```bash
-git clone https://github.com/Paulifx0/project-78-solvent-analysis.git
-cd project-78-solvent-analysis
-pip install -r requirements.txt
-jupyter notebook
-```
+The notebook was developed in Google Colab. Raw sensor data and GC reference values are not currently included in this repository; contact me for access.
 
-Raw data is in `data/raw/`; see `data/README.md` for file descriptions and units. [If the data can't be shared, replace this with: "Raw data is not included; contact me for access."]
+```bash
+pip install pandas numpy scipy scikit-learn matplotlib
+```
 
 **Built with:** Python, pandas, NumPy, SciPy, scikit-learn, Matplotlib
 
